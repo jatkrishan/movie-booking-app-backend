@@ -6,29 +6,34 @@ validMovieRequestBody = async (req, res, next)=>{
 //check Name
 
 if(!req.body.name){
-    res.status(400).send({message: "Error Name is required"})
+   return res.status(400).send({message: "Error Name is required"})
 }
 
 //description check
 
 if(!req.body.description){
-    res.status(400).send({message: "Error description is required"})
+    return  res.status(400).send({message: "Error description is required"})
 }
 
 if(!req.body.director){
-    res.status(400).send({message: "Error director is required"})
+    return   res.status(400).send({message: "Error director is required"})
 }
 
 if(!req.body.langauge){
-    res.status(400).send({message: "Error langauge is required"})
+    return  res.status(400).send({message: "Error langauge is required"})
 }
 
- const releaseStatus = [constant.movieStatusType.blocked, constant.movieStatusType.releaseStatus, constant.movieStatusType.unrelesed]
+if(!req.body.casts){
+    return  res.status(400).send({message: "Error casts is required"})
+}
+
+
+ const releaseStatus = [constant.releaseStatus.blocked, constant.releaseStatus.releaseStatus, constant.releaseStatus.unrelesed]
 
  const movieStatus = req.body.releaseStatus;
 
-if(!movieStatus && !releaseStatus.includes(movieStatus)){
-    res.status(400).send({message: "Error releaseStatus is required"})
+if(!releaseStatus.includes(movieStatus)){
+    return   res.status(400).send({message: "Error releaseStatus is required"})
 }
 
 

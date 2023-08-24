@@ -13,14 +13,23 @@ const moviseSchema = mongoose.Schema ({
         type: String,
         require: true
     },
-    trailer: {
-        data: Buffer,
-        contentType: String
+    // trailer: {
+    //     data: Buffer,
+    //     contentType: String
+    // },
+    // poster: {
+    //     data: Buffer,
+    //     contentType: String
+    // },
+    posterUrl : {
+                type: String,
+                require: true
     },
-    poster: {
-        data: Buffer,
-        contentType: String
-    },
+    trailerUrl : {
+        type: String,
+        require: true
+},
+
     langauge: {
              type: [String],
              require: true

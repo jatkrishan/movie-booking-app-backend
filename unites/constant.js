@@ -1,12 +1,12 @@
-const movieStatusType = {
-    realsed: "REALSED",
+const releaseStatus = {
+    realsed: "RELEASED",
     blocked: "BLOCKED",
     unrelesed: "UNRELESED"
 
 }
 
  const contents = {
-    movieStatusType: movieStatusType
+    releaseStatus: releaseStatus
  }
 
 module.exports = contents;
