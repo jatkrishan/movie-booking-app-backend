@@ -1,5 +1,6 @@
-const verifyMovieReqBody = require("./verifyMovieBody")
+const verifyThearterReqBody= require("./verifyMovieBody")
 
 module.exports = {
-    verifyMovieReqBody
+    verifyThearterReqBody,
+    verifyThearterReqBody
 }

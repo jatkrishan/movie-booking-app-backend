@@ -13,6 +13,9 @@ exports.createMovie = async(req, res) => {
     langauge: req.body.langauge,
     realeseDate: req.body.realeseDate
    }
+   
+   
+
 try{
     const movie = await Movie.create(movieObject)
      return res.status(200).send(movie)
