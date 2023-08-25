@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const thearterSchema = mongoose.Schema ({
+const theatreSchema = mongoose.Schema ({
  
     name: {
         type: String,
@@ -34,4 +34,4 @@ const thearterSchema = mongoose.Schema ({
 
 })
 
-module.exports = mongoose.model("thearter", thearterSchema)
+module.exports = mongoose.model("thearter", theatreSchema)

@@ -1,7 +1,7 @@
 
 
 
-validThearterRequestBody = async (req, res, next)=>{
+validTheatreRequestBody = async (req, res, next)=>{
 //check Name
 
 if(!req.body.name){
@@ -37,8 +37,8 @@ next()
 
 
 
-const verifyThearterReqBody = {
-    validThearterRequestBody: validThearterRequestBody
+const verifyTheatreReqBody = {
+    validTheatreRequestBody: validTheatreRequestBody
 }
 
-module.exports = verifyThearterReqBody;
+module.exports = verifyTheatreReqBody;
