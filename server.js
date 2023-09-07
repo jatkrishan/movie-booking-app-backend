@@ -1,5 +1,5 @@
-const configDb = require("./config.js/db.config")
-const configServer = require("./config.js/server.config")
+const configDb = require("./config/db.config")
+const configServer = require("./config/server.config")
 
 require("dotenv").config()
 
@@ -24,7 +24,12 @@ db.once("open" ,() =>{
 })
 
 
-require("./routes/movie.route")(app)
+require("./routes/movie.route")(app);
+require("./routes/theatre.route")(app);
+require("./routes/auth.route")(app);
+require("./routes/user.route")(app);
+require("./routes/booking.route")(app);
+require("./routes/payment.route")(app)
 
 app.listen(configServer.PORT, ()=>{
     console.log("Application start on port ", configServer.PORT) 

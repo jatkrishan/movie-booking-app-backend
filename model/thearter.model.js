@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require("./index")
 
-const theatreSchema = mongoose.Schema ({
+const theatreSchema = new mongoose.Schema ({
  
     name: {
         type: String,
@@ -14,12 +14,13 @@ const theatreSchema = mongoose.Schema ({
         type: String,
         required: true
     },
-    pincode: {
-        type: String,
+    pinCode: {
+        type: Number,
         required: true
     },
     createdAt: {
         type: Date,
+        immutable: true,
         default: ()=>{return Date.now()}
     },
     updateAt: {
@@ -34,4 +35,4 @@ const theatreSchema = mongoose.Schema ({
 
 })
 
-module.exports = mongoose.model("thearter", theatreSchema)
+module.exports = mongoose.model("Thearter", theatreSchema)

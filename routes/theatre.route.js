@@ -1,21 +1,17 @@
-const verifyTheatreReqBody = require("../middleware")
-const {verifyMovieReqBody} = require("../middleware")
+const {verifyTheatreReqBody} = require("../middleware/index")
+const theatreController = require("../controller/theatre.controller")
 
 
 module.exports = function(app){
-
-    app.get("/theatreShow/api/v1/theater")
-    app.get("/theatreShow/api/v1/theater/:id")
-    app.post("/theatreShow/api/v1/theater", [verifyTheatreReqBody.verifyTheatreReqBody], )
-    app.put("/theatreShow/api/v1/theater/:id", [verifyTheatreReqBody.verifyTheatreReqBody], )
-    app.delele("/theatreShow/api/v1/theater/:id")
+    
+    app.get("/movieBooking/api/v1/theater", theatreController.getAllTheatre)
+    app.get("/movieBooking/api/v1/theater/:id", theatreController.getTheatreById)
+    app.post("/movieBooking/api/v1/theater", [verifyTheatreReqBody.validTheatreRequestBody], theatreController.createTheatre)
+    app.put("/movieBooking/api/v1/theater/:id", theatreController.updateTheatreById)
+    app.delete("/movieBooking/api/v1/theater/:id", theatreController.deleteTheatreById)
 
     
-    app.put("/addMovieToTherter/api/v1/therter/:id", [verifyTheatreReqBody.verifyMovieReqBody], )
-    app.get("/AllMovieToTherter/api/v1/therter")
-    app.get("/oneMovieToTherter/api/v1/therter/:id")
-
-
-
+    app.put("/movieBooking/api/v1/theatre/:id/movie", theatreController.addMoviesToATheatre)
+    app.get("/movieBooking/api/v1/theatre/:theatreId/movie/:movieId", theatreController.checkMovieToTheatre)
 
 }

@@ -1,6 +1,11 @@
-const verifyTheatreReqBody= require("./verifyMovieBody")
+const verifyTheatreReqBody = require("./verifyThearterBody")
+const verifyMovieReqBody = require("./verifyMovieBody")
+const validateSignUpReqCheck = require("./auth")
+const verifyUser = require("./verifyUser")
 
 module.exports = {
-    verifyTheatreReqBody,
-    verifyTheatreReqBody
+    verifyTheatreReqBody ,
+    verifyMovieReqBody,
+    validateSignUpReqCheck,
+    verifyUser
 }

@@ -1,6 +1,6 @@
-const mongoose = require("mongoose")
+const mongoose = require("./index")
 
-const moviseSchema = mongoose.Schema ({
+const moviseSchema = new mongoose.Schema ({
     name : {
         type: String,
         require: true
@@ -54,4 +54,4 @@ const moviseSchema = mongoose.Schema ({
 
 })
 
-module.exports = mongoose.model("movie", moviseSchema)
+module.exports = mongoose.model("Movie", moviseSchema)
