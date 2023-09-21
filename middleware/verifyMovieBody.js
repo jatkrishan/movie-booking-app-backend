@@ -28,7 +28,7 @@ if(!req.body.casts){
 }
 
 
- const releaseStatus = [constant.releaseStatus.blocked, constant.releaseStatus.releaseStatus, constant.releaseStatus.unrelesed]
+ const releaseStatus = [constant.releaseStatus.blocked, constant.releaseStatus.realsed, constant.releaseStatus.unrelesed]
 
  const movieStatus = req.body.releaseStatus;
 

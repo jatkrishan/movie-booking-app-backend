@@ -1,4 +1,4 @@
-const mongoose = require("./index")
+const mongoose = require("mongoose")
 
 const bookingSchema = new mongoose.Schema({
     theaterId: {
@@ -48,4 +48,4 @@ const bookingSchema = new mongoose.Schema({
 )
 
 
-module.exports = model("Booking", bookingSchema)
+module.exports = mongoose.model("Booking", bookingSchema)

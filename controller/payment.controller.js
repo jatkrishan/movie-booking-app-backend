@@ -5,7 +5,7 @@ const content = require("../unites/constant.js");
 const contents = require("../unites/constant.js");
 
 exports.createPayment = async (req, res) => {
-  const booking = await Booking.findOne({ _id: req.body.bookingId });
+  const booking = await Booking.findOne({ _id: req.body.bookingId});
 
   var bookingTime = booking.createdAt;
   var currentTime = Date.now();
@@ -45,7 +45,7 @@ exports.createPayment = async (req, res) => {
       user.email,
       "mba-no-reply@gmail.com"
     );
-  } catch (error) {
+  }catch (error) {
     return res
       .status(500)
       .send({ message: "Internal server error creating by booking" });
@@ -60,7 +60,7 @@ exports.getPaymentById = async (req, res) => {
   try {
     const payment = await payment.findOne({ _id: req.params.id });
     const booking = await Booking.findOne({ _id: payment.bookingId });
-
+        
     if (
       user.userType !== content.userType.admin &&
       booking !== null &&

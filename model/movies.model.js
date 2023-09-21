@@ -1,4 +1,4 @@
-const mongoose = require("./index")
+const mongoose = require("mongoose")
 
 const moviseSchema = new mongoose.Schema ({
     name : {
@@ -13,21 +13,13 @@ const moviseSchema = new mongoose.Schema ({
         type: String,
         require: true
     },
-    // trailer: {
-    //     data: Buffer,
-    //     contentType: String
-    // },
-    // poster: {
-    //     data: Buffer,
-    //     contentType: String
-    // },
     posterUrl : {
                 type: String,
                 require: true
     },
-    trailerUrl : {
-        type: String,
-        require: true
+     trailerUrl : {
+          type: String,
+           require: true
 },
 
     langauge: {

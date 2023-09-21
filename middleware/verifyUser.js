@@ -46,6 +46,7 @@ isCustomer = async (req, res, next) => {
     const user = await User.findOne({
      userId: req.userId
     })
+    console.log(user.userType)
  
     if(user && user.userType === constant.userType.customer){
      next();
@@ -57,11 +58,9 @@ isCustomer = async (req, res, next) => {
 
 isAdminAndCustomer = async (req, res, next) => {
         
-    const user = await User.findOne({
-     userId: req.userId
-    })
- 
-    if(user && user.userType === constant.userType.admin || constant.userType.customer){
+    const user = await User.findOne({userId: req.userId})
+    
+    if(user && user.userType === constant.userType.customer || user.userType === constant.userType.admin){
      next();
     }else{
      return res.status(403).send({message: "Only admins are allowed this operation"})

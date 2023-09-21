@@ -27,26 +27,26 @@ exports.createTheatre = async(req, res) => {
 
 exports.getAllTheatre = async(req, res) => {
 
-    const quearyObject = {}
+    const queryObject = {}
 
     if(req.query.name != undefined){
-        quearyObject.name = req.query.name
+        queryObject.name = req.query.name
     }
-    
+
     if(req.query.city != undefined){
-        quearyObject.city = req.query.city
+        queryObject.city = req.query.city
     }
-    
-    if(req.query.pincode != undefined){
-        quearyObject.pincode = req.query.pincode
+
+    if(req.query.pinCode != undefined){
+        queryObject.pinCode = req.query.pinCode
     }
 
     try{
-        const theatres = await Theatre.find(quearyObject)
+        const theatres = await Theatre.find(req.query).select({__v:0})
          
-          if(req.query.moviedId != undefined){
-            theatres = theatres.filter(t => t.movies.includes(req.query.moviedId))
-          } 
+        //   if(req.query.moviedId != undefined){
+        //     theatres = theatres.filter(req.query)
+        //   } 
 
           return res.status(200).send(theatres)
 
@@ -74,19 +74,22 @@ exports.getTheatreById = async(req, res) => {
 
 exports.updateTheatreById = async(req, res) => {
       
-    const thertreUpdate = await Theatre.findOne({_id: req.params.id})
-    if(!thertreUpdate){
+    const thertreUpdate = await Theatre.updateOne({_id: req.params.id}, {$set:
+        {
+             name: req.body.name ,
+            city : req.body.city ,
+            pinCode : req.body.pinCode,
+            movies:  req.body.movies
+    }})
+   
+   
+        if(!thertreUpdate){
         return res.status(400).send({message: "Enter a valid id"})
     }
      
-    thertreUpdate.name = req.body.name != undefined ? req.body.name : thertreUpdate.name;
-    thertreUpdate.city = req.body.city != undefined ? req.body.city : thertreUpdate.city;
-    thertreUpdate.pinCode = req.body.pinCode != undefined ? req.body.pinCode : thertreUpdate.pinCode;
-      
-     const thertreUpdateById = await thertreUpdate.save()
 
     try{
-             return res.status(200).send(thertreUpdateById)
+             return res.status(200).send(thertreUpdate)
 
     }catch(error){
         return res.status(500).send({message: "Some error occured by the theatre "})
@@ -108,8 +111,9 @@ exports.deleteTheatreById = async(req, res) => {
          return res.status(400).send({message: "Some error occured by the theatre "})
     }
 }
-
+var count=0;
 exports.addMoviesToATheatre = async (req, res) => {
+    
     var movieIds = []
     var validMovieIds = []
     try{
@@ -124,14 +128,14 @@ exports.addMoviesToATheatre = async (req, res) => {
 
         //Add only those movies which are in the system
         validMovieIds = await getValidMovies(req.body.movieIds)
-     
+        
         if(validMovieIds.length > 0){
             savedTheatre.movies = validMovieIds
             const updatedTheatre = await savedTheatre.save()
-            return res.status(200).send(updatedTheatre)
+            return res.status(200).send({updatedTheatre , count: count})
         }else{
             return res.status(400).send({
-                message: "No valid movie to be added to the theatre"
+                message: `No valid movie to be added to the theatre`
             })
         }
 
@@ -144,19 +148,20 @@ exports.addMoviesToATheatre = async (req, res) => {
 }
 
 getValidMovies = async (movieIds) => {
+   
     var validMovieIds = []
-
-
+       
     if(movieIds != null && movieIds.length > 0){
 
         for(let i = 0; i < movieIds.length; i++){
             const savedMovie = await Movie.findOne({_id: movieIds[i]})
             if(savedMovie){
                 validMovieIds.push(movieIds[i])
+               count++;
             }
         }
     }
-
+   
     return validMovieIds
 }
 

@@ -1,10 +1,10 @@
 const Booking = require("../model/booking.model")
 const  constant = require("../unites/constant")
 const User = require("../model/user.model")
+const bookingModel = require("../model/booking.model")
 
 exports.createMovie = async (req, res) => {
-     const user = await User.find({userId: req.userId})
-
+     const user = await User.findOne({userId: req.userId})
   const  bookingObj = {
         theaterId: req.body.theaterId,
         moviesId: req.body.moviesId,
@@ -13,12 +13,12 @@ exports.createMovie = async (req, res) => {
         noOfSeats: req.body.noOfSeats,
         totalCost: req.body.noOfSeats * constant.price.ticketPrice
      }
-  
+     
     try{
       const booking = await Booking.create(bookingObj)
-       
+      console.log(booking)
       if(booking){
-            return res.send(200).send(bookingObj)
+            return res.status(200).json(bookingObj)
         }
 
     }catch(error){
@@ -30,12 +30,16 @@ exports.createMovie = async (req, res) => {
 exports. getAllMovieByUser = async (req, res) => {
     const user = await User.findOne({userId: req.userId})
     try{
-
-        const booking = await Booking.find(user)
-        return res.status(200).send(booking)
+  
+        const booking = await Booking.find({userId: user._id})
+       
+        if(booking){
+          return res.status(200).json(booking)
+        }
+     
       
       }catch(error){
-       
+        console.log(user)
         return res.status(500).send({message: "Some internal error occured"})
    
     }

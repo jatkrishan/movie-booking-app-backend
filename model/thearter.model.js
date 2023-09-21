@@ -1,4 +1,4 @@
-const mongoose = require("./index")
+const mongoose = require("mongoose")
 
 const theatreSchema = new mongoose.Schema ({
  
@@ -18,6 +18,13 @@ const theatreSchema = new mongoose.Schema ({
         type: Number,
         required: true
     },
+    
+    movies: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Movie" 
+     }]
+     ,
+
     createdAt: {
         type: Date,
         immutable: true,
@@ -26,12 +33,7 @@ const theatreSchema = new mongoose.Schema ({
     updateAt: {
         type: Date,
         default: ()=>{return Date.now()}
-    },
-    movies: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "movie" 
-     }]
-
+    }
 
 })
 

@@ -1,6 +1,6 @@
-const mongoose = require("./index")
+const mongoose = require("mongoose")
 
-const paymentSchema = new model.Schema({
+const paymentSchema = new mongoose.Schema({
        bookingId: {
         type: [mongoose.Schema.Types.ObjectId],
           ref: "Booking",

@@ -5,7 +5,6 @@ require("dotenv").config()
 
 //Express Require
 const express = require("express")
-
 const app = express()
 
 const bodyParser = require("body-parser")
@@ -19,11 +18,11 @@ const db = mongoose.connection
 db.on("error" ,() =>{
     console.log("Error while connection to DB ")
 })
+
 db.once("open" ,() =>{
     console.log("connected to mongoose DB ")
 })
-
-
+  
 require("./routes/movie.route")(app);
 require("./routes/theatre.route")(app);
 require("./routes/auth.route")(app);
